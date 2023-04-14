@@ -1,0 +1,139 @@
+import java.util.Scanner;
+
+class Book {
+    private String title;
+    private String author;
+    private int quantity;
+    private double price;
+
+    public Book(String title, String author, int quantity, double price) {
+        this.title = title;
+        this.author = author;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+
+class Library {
+    private Book[] books;
+    private int numBooks;
+
+    public Library() {
+        books = new Book[100];
+        numBooks = 0;
+    }
+
+    public void addBook(Book book) {
+        if (numBooks >= 100) {
+            System.out.println("Library is full. Cannot add more books.");
+            return;
+        }
+        books[numBooks++] = book;
+        System.out.println("Book added successfully.");
+    }
+
+    public void displayBooks() {
+        if (numBooks == 0) {
+            System.out.println("No books available in the library.");
+            return;
+        }
+        System.out.println("Books in the library:");
+        for (int i = 0; i < numBooks; i++) {
+            System.out.println("Title: " + books[i].getTitle());
+            System.out.println("Author: " + books[i].getAuthor());
+            System.out.println("Quantity: " + books[i].getQuantity());
+            System.out.println("Price: $" + books[i].getPrice());
+            System.out.println("-----------------------------");
+        }
+    }
+
+    public void updateBookQuantity(String title, int quantity) {
+        boolean found = false;
+        for (int i = 0; i < numBooks; i++) {
+            if (books[i].getTitle().equalsIgnoreCase(title)) {
+                books[i].setQuantity(quantity);
+                System.out.println("Book quantity updated successfully.");
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Book not found in the library.");
+        }
+    }
+
+    public void deleteBook(String title) {
+        boolean found = false;
+        for (int i = 0; i < numBooks; i++) {
+            if (books[i].getTitle().equalsIgnoreCase(title)) {
+                for (int j = i; j < numBooks - 1; j++) {
+                    books[j] = books[j + 1];
+                }
+                numBooks--;
+                System.out.println("Book deleted successfully.");
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Book not found in the library.");
+        }
+    }
+}
+
+class User {
+    private String name;
+    private String email;
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+}
+
+class LibraryManagementSystem {
+    private Library library;
+    private User currentUser;
+
+    public LibraryManagementSystem() {
+        library = new Library();
+        currentUser = null;
+    }
+
+    public void loginAsAdmin(String password) {
+        if (password.equals("admin123")) {
+            //displayAdminMenu();
+        } else {
+            System.out.println("Invalid password. Access denied.");
+        }
+        
+        }
+    }
